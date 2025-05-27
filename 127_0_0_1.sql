@@ -467,12 +467,6 @@ ALTER TABLE `pma__savedsearches`
 CREATE DATABASE IF NOT EXISTS `restaurant_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `restaurant_db`;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `customers`
---
-
 CREATE TABLE `customers` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
@@ -481,9 +475,6 @@ CREATE TABLE `customers` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `customers`
---
 
 INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `created_at`) VALUES
 (1, 'afrooz', 'email1@gmail.com', '03327675892', '2025-05-26 11:41:23'),
@@ -491,24 +482,12 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `created_at`) VALUES
 (3, 'Jane Smith', 'jane.smith@email.com', '555-0102', '2025-05-26 11:43:59'),
 (4, 'Mike Johnson', 'mike.j@email.com', '555-0103', '2025-05-26 11:43:59');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `dining_tables`
---
-
 CREATE TABLE `dining_tables` (
   `id` int(11) NOT NULL,
   `table_number` varchar(10) NOT NULL,
   `capacity` int(11) NOT NULL,
   `status` enum('Available','Occupied','Reserved') DEFAULT 'Available'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `inventory`
---
 
 CREATE TABLE `inventory` (
   `id` int(11) NOT NULL,
@@ -518,11 +497,6 @@ CREATE TABLE `inventory` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `menu_items`
---
 
 CREATE TABLE `menu_items` (
   `id` int(11) NOT NULL,
@@ -534,10 +508,6 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `menu_items`
---
-
 INSERT INTO `menu_items` (`id`, `name`, `description`, `price`, `category`, `image`, `created_at`) VALUES
 (2, 'pizza', 'pizza pie ', 500.00, 'Appetizer', 'OIP.jpeg', '2025-05-26 11:36:37'),
 (3, 'Margherita Pizza', 'Classic pizza with tomato, mozzarella, and basil', 12.99, 'Main Course', 'pizza.jpg', '2025-05-26 11:43:58'),
@@ -546,11 +516,6 @@ INSERT INTO `menu_items` (`id`, `name`, `description`, `price`, `category`, `ima
 (6, 'Iced Coffee', 'Chilled coffee with milk and sugar', 4.50, 'Beverage', 'coffee.jpg', '2025-05-26 11:43:58'),
 (7, 'Grilled Salmon', 'Fresh salmon with lemon herb sauce', 18.99, 'Main Course', 'salmon.jpg', '2025-05-26 11:43:58');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `orders`
---
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
@@ -560,20 +525,11 @@ CREATE TABLE `orders` (
   `status` enum('Pending','Processing','Completed','Cancelled') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
 INSERT INTO `orders` (`id`, `customer_id`, `order_date`, `total_amount`, `status`) VALUES
 (1, 1, '2025-05-26 11:43:59', 21.49, 'Completed'),
 (2, 2, '2025-05-26 11:43:59', 12.99, 'Pending'),
 (3, 3, '2025-05-26 11:43:59', 30.48, 'Processing');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `order_items`
---
 
 CREATE TABLE `order_items` (
   `id` int(11) NOT NULL,
@@ -583,11 +539,6 @@ CREATE TABLE `order_items` (
   `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `promotions`
---
 
 CREATE TABLE `promotions` (
   `id` int(11) NOT NULL,
@@ -599,12 +550,6 @@ CREATE TABLE `promotions` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `reservations`
---
-
 CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -615,12 +560,6 @@ CREATE TABLE `reservations` (
   `status` enum('Pending','Confirmed','Cancelled') DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `reviews`
---
-
 CREATE TABLE `reviews` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) DEFAULT NULL,
@@ -628,12 +567,6 @@ CREATE TABLE `reviews` (
   `comment` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `staff`
---
 
 CREATE TABLE `staff` (
   `id` int(11) NOT NULL,
@@ -644,24 +577,12 @@ CREATE TABLE `staff` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `table_assignments`
---
-
 CREATE TABLE `table_assignments` (
   `id` int(11) NOT NULL,
   `reservation_id` int(11) DEFAULT NULL,
   `table_id` int(11) DEFAULT NULL,
   `assigned_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
@@ -671,214 +592,110 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `users`
---
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_at`) VALUES
 (1, 'admin', '$2y$10$8z3z3z3z3z3z3z3z3z3z3u3z3z3z3z3z3z3z3z3z3z3z3z3z3z3z3z3', 'admin@restaurant.com', '2025-05-26 11:26:44');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `customers`
---
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- Indexes for table `dining_tables`
---
 ALTER TABLE `dining_tables`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `table_number` (`table_number`);
 
---
--- Indexes for table `inventory`
---
 ALTER TABLE `inventory`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `menu_items`
---
 ALTER TABLE `menu_items`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `orders`
---
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
---
--- Indexes for table `order_items`
---
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `order_id` (`order_id`),
   ADD KEY `menu_item_id` (`menu_item_id`);
 
---
--- Indexes for table `promotions`
---
 ALTER TABLE `promotions`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `reservations`
---
 ALTER TABLE `reservations`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
---
--- Indexes for table `reviews`
---
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`),
   ADD KEY `customer_id` (`customer_id`);
 
---
--- Indexes for table `staff`
---
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
--- Indexes for table `table_assignments`
---
 ALTER TABLE `table_assignments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `reservation_id` (`reservation_id`),
   ADD KEY `table_id` (`table_id`);
 
---
--- Indexes for table `users`
---
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `customers`
---
 ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT for table `dining_tables`
---
 ALTER TABLE `dining_tables`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `inventory`
---
 ALTER TABLE `inventory`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `menu_items`
---
 ALTER TABLE `menu_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- AUTO_INCREMENT for table `orders`
---
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT for table `order_items`
---
 ALTER TABLE `order_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- AUTO_INCREMENT for table `promotions`
---
 ALTER TABLE `promotions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `reservations`
---
 ALTER TABLE `reservations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `reviews`
---
 ALTER TABLE `reviews`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `staff`
---
 ALTER TABLE `staff`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `table_assignments`
---
 ALTER TABLE `table_assignments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT for table `users`
---
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `orders`
---
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 
---
--- Constraints for table `order_items`
---
 ALTER TABLE `order_items`
   ADD CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`menu_item_id`) REFERENCES `menu_items` (`id`);
 
---
--- Constraints for table `reservations`
---
 ALTER TABLE `reservations`
   ADD CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 
---
--- Constraints for table `reviews`
---
 ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
 
---
--- Constraints for table `table_assignments`
---
 ALTER TABLE `table_assignments`
   ADD CONSTRAINT `table_assignments_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`id`),
   ADD CONSTRAINT `table_assignments_ibfk_2` FOREIGN KEY (`table_id`) REFERENCES `dining_tables` (`id`);
---
--- Database: `test`
---
+
 CREATE DATABASE IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `test`;
 COMMIT;
